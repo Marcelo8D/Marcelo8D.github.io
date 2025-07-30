@@ -8,7 +8,6 @@ This site showcases my background, projects, skills, and experience in **Cyberse
 - Fully responsive and mobile-first design 📱
 - Dark mode support 🌙
 - Project showcase with GitHub links 🔗
-- Multilingual profile with 🇧🇷 🇪🇸 🇬🇧 🇨🇳 🇦🇩 flags
 - Built using **HTML**, **Tailwind CSS**, and **JavaScript**
 
 ## 🛠️ Tech Stack
