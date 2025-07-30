@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcelo Salla Marcenari - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f3e5f7',
+                            100: '#e1bee9',
+                            200: '#ce93da',
+                            300: '#ba68cb',
+                            400: '#ab47c0',
+                            500: '#9c27b0',
+                            600: '#8e24aa',
+                            700: '#7b1fa2',
+                            800: '#6a1b9a',
+                            900: '#4a148c',
+                        },
+                        secondary: {
+                            50: '#fff3e0',
+                            100: '#ffe0b2',
+                            200: '#ffcc80',
+                            300: '#ffb74d',
+                            400: '#ffa726',
+                            500: '#ff9800',
+                            600: '#fb8c00',
+                            700: '#f57c00',
+                            800: '#ef6c00',
+                            900: '#e65100',
+                        },
+                        accent: {
+                            50: '#e0f7fa',
+                            100: '#b2ebf2',
+                            200: '#80deea',
+                            300: '#4dd0e1',
+                            400: '#26c6da',
+                            500: '#00bcd4',
+                            600: '#00acc1',
+                            700: '#0097a7',
+                            800: '#00838f',
+                            900: '#006064',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                        'bounce-slow': 'bounce 2s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #6a1b9a 0%, #ff6b35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .dark .glass-effect {
+            background: rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .skill-bar {
+            transition: width 2s ease-in-out;
+        }
+        
+        .hero-bg-light {
+            background: linear-gradient(135deg, #6a1b9a 0%, #9c27b0 50%, #ff6b35 100%);
+        }
+        
+        .hero-bg-dark {
+            background: linear-gradient(135deg, #4a148c 0%, #6a1b9a 50%, #e65100 100%);
+        }
+        
+        /* Theme transition */
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    
+    <!-- Theme Toggle Button (Fixed Position) -->
+    <button id="theme-toggle" class="fixed top-4 right-4 z-50 p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group">
+        <svg id="sun-icon" class="w-6 h-6 text-yellow-500 hidden dark:block transition-transform group-hover:rotate-12" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+        </svg>
+        <svg id="moon-icon" class="w-6 h-6 text-primary-800 block dark:hidden transition-transform group-hover:-rotate-12" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+        </svg>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-md z-40 shadow-sm border-b border-gray-200 dark:border-gray-700">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-2xl font-bold gradient-text">Marcelo Salla Marcenari</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Home</a>
+                    <a href="#about" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">About</a>
+                    <a href="#skills" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Skills</a>
+                    <a href="#projects" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Projects</a>
+                    <a href="#contact" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Contact</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Home</a>
+                <a href="#about" class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">About</a>
+                <a href="#skills" class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Skills</a>
+                <a href="#projects" class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Projects</a>
+                <a href="#contact" class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg-light dark:hero-bg-dark min-h-screen flex items-center justify-center text-white relative overflow-hidden">
+        <div class="text-center z-10 px-4 max-w-4xl">
+            <div class="animate-float mb-8">
+                <div class="w-32 h-32 mx-auto rounded-full glass-effect flex items-center justify-center text-6xl mb-6">
+                    👋
+                </div>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-slide-up">
+                Hi, I'm <span class="text-secondary-300">Marcelo!</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 animate-slide-up opacity-90">
+                Junior Software Engineer & Computer Engineering Student
+            </p>
+            <div class="animate-slide-up">
+                <a href="#projects" class="inline-flex items-center px-8 py-3 bg-white text-primary-600 rounded-full font-semibold hover:bg-secondary-400 hover:text-white transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    View My Work
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Floating shapes -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-white/5 rounded-full animate-float" style="animation-delay: -2s;"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-48 h-48 bg-white/5 rounded-full animate-float" style="animation-delay: -4s;"></div>
+            <div class="absolute top-1/2 right-1/3 w-32 h-32 bg-white/5 rounded-full animate-float" style="animation-delay: -1s;"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white dark:bg-gray-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h2 class="text-4xl font-bold gradient-text">About Me</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                         I'm a junior software engineer and final-year Computer Engineering student at UPC (FIB) in Barcelona, Spain with a strong interest in machine learning, 
+                         software development, and cybersecurity. 
+                         I enjoy building full-stack applications with technologies like React, FastAPI, and Python, and I'm always seeking to improve my skills through hands-on projects and technical challenges.
+                    </p>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                         I have a growing interest in DevOps and cloud platforms like AWS, and I've earned certifications such as AWS Cloud Practitioner and ClickHouse Developer. 
+                         When I'm not coding, I’m usually learning something new or planning exciting travel adventures.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <span class="px-4 py-2 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium">🛡️ Cybersecurity</span>
+                        <span class="px-4 py-2 bg-accent-100 dark:bg-accent-900 text-accent-700 dark:text-accent-300 rounded-full text-sm font-medium">💻 Full Stack</span>
+                        <span class="px-4 py-2 bg-secondary-100 dark:bg-secondary-900 text-secondary-700 dark:text-secondary-300 rounded-full text-sm font-medium">☁️ Cloud</span>
+                    </div>
+                </div>
+                <div class="glass-effect rounded-2xl p-8 bg-gradient-to-br from-primary-50 to-accent-50 dark:from-primary-900/20 dark:to-accent-900/20">
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-2xl">🎓</span>
+                            <div>
+                                <h3 class="font-semibold">Education</h3>
+                                <p class="text-gray-600 dark:text-gray-400">Computer Engineering @ UPC Barcelona</p>
+                            </div>
+                        </div>
+                        <!-- <div class="flex items-center space-x-3">
+                            <span class="text-2xl">💼</span>
+                            <div>
+                                <h3 class="font-semibold">Experience</h3>
+                                <p class="text-gray-600 dark:text-gray-400">3+ Years in Web Development</p>
+                            </div>
+                        </div> -->
+                        <div class="flex items-center space-x-3">
+                            <span class="text-2xl">❄️</span>
+                            <div>
+                                <h3 class="font-semibold">Exchange</h3>
+                                <p class="text-gray-600 dark:text-gray-400">Erasmus @ Kristiania University Oslo</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-2xl">🌍</span>
+                            <div>
+                                <h3 class="font-semibold">Location</h3>
+                                <p class="text-gray-600 dark:text-gray-400">Barcelona, Spain</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text mb-4">Skills & Technologies</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">Technologies I work with</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Programming Languages -->
+                <div class="skill-category glass-effect rounded-xl p-6 bg-white/50 dark:bg-gray-700/50">
+                    <h3 class="text-xl font-semibold mb-4 text-primary-700 dark:text-primary-300">💻 Programming</h3>
+                    <div class="space-y-3">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">Python</span>
+                                <span class="text-sm text-gray-500">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full" style="width: 0%" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">JavaScript</span>
+                                <span class="text-sm text-gray-500">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-yellow-500 to-orange-500 h-2 rounded-full" style="width: 0%" data-width="85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">C++</span>
+                                <span class="text-sm text-gray-500">75%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full" style="width: 0%" data-width="75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">TypeScript</span>
+                                <span class="text-sm text-gray-500">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-blue-600 to-blue-700 h-2 rounded-full" style="width: 0%" data-width="80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Frontend -->
+                <div class="skill-category glass-effect rounded-xl p-6 bg-white/50 dark:bg-gray-700/50">
+                    <h3 class="text-xl font-semibold mb-4 text-accent-700 dark:text-accent-300">🎨 Frontend</h3>
+                    <div class="space-y-3">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">React</span>
+                                <span class="text-sm text-gray-500">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-accent-500 to-accent-600 h-2 rounded-full" style="width: 0%" data-width="85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">HTML/CSS</span>
+                                <span class="text-sm text-gray-500">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-orange-500 to-red-500 h-2 rounded-full" style="width: 0%" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">JavaScript</span>
+                                <span class="text-sm text-gray-500">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-yellow-500 to-yellow-600 h-2 rounded-full" style="width: 0%" data-width="85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Backend -->
+                <div class="skill-category glass-effect rounded-xl p-6 bg-white/50 dark:bg-gray-700/50">
+                    <h3 class="text-xl font-semibold mb-4 text-secondary-700 dark:text-secondary-300">⚙️ Backend</h3>
+                    <div class="space-y-3">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">FastAPI</span>
+                                <span class="text-sm text-gray-500">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-secondary-500 to-secondary-600 h-2 rounded-full" style="width: 0%" data-width="80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">Django</span>
+                                <span class="text-sm text-gray-500">75%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-green-500 to-green-600 h-2 rounded-full" style="width: 0%" data-width="75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">Express</span>
+                                <span class="text-sm text-gray-500">70%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-gray-500 to-gray-600 h-2 rounded-full" style="width: 0%" data-width="70%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">MySQL</span>
+                                <span class="text-sm text-gray-500">75%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-blue-400 to-blue-500 h-2 rounded-full" style="width: 0%" data-width="75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- DevOps & Cloud -->
+                <div class="skill-category glass-effect rounded-xl p-6 bg-white/50 dark:bg-gray-700/50">
+                    <h3 class="text-xl font-semibold mb-4 text-primary-700 dark:text-primary-300">☁️ DevOps</h3>
+                    <div class="space-y-3">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">AWS</span>
+                                <span class="text-sm text-gray-500">70%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-orange-400 to-orange-500 h-2 rounded-full" style="width: 0%" data-width="70%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">Docker</span>
+                                <span class="text-sm text-gray-500">75%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full" style="width: 0%" data-width="75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">GitHub Actions</span>
+                                <span class="text-sm text-gray-500">65%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-gray-600 to-gray-700 h-2 rounded-full" style="width: 0%" data-width="65%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Languages Section -->
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold text-center gradient-text mb-8">🌍 Languages</h3>
+                <div class="flex justify-center">
+                    <div class="grid md:grid-cols-5 gap-6 max-w-4xl">
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto mb-2 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center text-2xl">🇬🇧</div>
+                            <p class="font-semibold">English</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">C1 Level</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto mb-2 bg-accent-100 dark:bg-accent-900 rounded-full flex items-center justify-center text-2xl">🇵🇹</div>
+                            <p class="font-semibold">Portuguese</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Native</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto mb-2 bg-secondary-100 dark:bg-secondary-900 rounded-full flex items-center justify-center text-2xl">🇪🇸</div>
+                            <p class="font-semibold">Spanish</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Fluent</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto mb-2 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center text-2xl">󠁧🇨🇦</div>
+                            <p class="font-semibold">Catalan</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Fluent</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto mb-2 bg-accent-100 dark:bg-accent-900 rounded-full flex items-center justify-center text-2xl">🇨🇳</div>
+                            <p class="font-semibold">Chinese</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Basic</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-white dark:bg-gray-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text mb-4">Featured Projects</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">Some of my recent work</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- CulturaConnecta Project -->
+                <div class="project-card bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl">
+                    <div class="h-48 bg-gradient-to-br from-primary-400 to-accent-500 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center text-white text-6xl">
+                            🎭
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-white/20 text-white px-3 py-1 rounded-full text-sm font-medium">2024</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">CulturaConnecta</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Mobile application to help users discover and engage with social and cultural events across Catalonia. 
+                            Features real-time event listings, personalized filtering, geolocation maps, and community forums.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 text-xs rounded">React Native</span>
+                            <span class="px-2 py-1 bg-accent-100 dark:bg-accent-900 text-accent-700 dark:text-accent-300 text-xs rounded">Node.js</span>
+                            <span class="px-2 py-1 bg-secondary-100 dark:bg-secondary-900 text-secondary-700 dark:text-secondary-300 text-xs rounded">Open Data</span>
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">Geolocation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Token Exchange Smart Contract -->
+                <div class="project-card bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl">
+                    <div class="h-48 bg-gradient-to-br from-yellow-500 to-primary-600 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center text-white text-6xl">
+                            🏦
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-white/20 text-white px-3 py-1 rounded-full text-sm font-medium">2025</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Exchange Contract for SLN and CRL Tokens</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Decentralized token swap mechanism for SLN and CRL tokens. Smart contract enables seamless token swapping 
+                            with built-in precision handling and comprehensive security mechanisms.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300 text-xs rounded">Solidity</span>
+                            <span class="px-2 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 text-xs rounded">Smart Contracts</span>
+                            <span class="px-2 py-1 bg-accent-100 dark:bg-accent-900 text-accent-700 dark:text-accent-300 text-xs rounded">DeFi</span>
+                            <span class="px-2 py-1 bg-secondary-100 dark:bg-secondary-900 text-secondary-700 dark:text-secondary-300 text-xs rounded">Blockchain</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <a href="https://github.com/Marcelo8D/Cryptography-Blockchain" class="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 font-medium transition-colors">GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cybersecurity Project -->
+                <div class="project-card bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl">
+                    <div class="h-48 bg-gradient-to-br from-red-500 to-primary-600 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center text-white text-6xl">
+                            🔒
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-white/20 text-white px-3 py-1 rounded-full text-sm font-medium">2025</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Cybersecurity Research</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Advanced cybersecurity research focusing on machine learning for threat detection, cryptography, and blockchain security. 
+                            Practical penetration testing and vulnerability assessment through Hack The Box challenges.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 text-xs rounded">Penetration Testing</span>
+                            <span class="px-2 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 text-xs rounded">Machine Learning</span>
+                            <span class="px-2 py-1 bg-accent-100 dark:bg-accent-900 text-accent-700 dark:text-accent-300 text-xs rounded">Cryptography</span>
+                            <span class="px-2 py-1 bg-secondary-100 dark:bg-secondary-900 text-secondary-700 dark:text-secondary-300 text-xs rounded">Blockchain</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certifications Section -->
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold text-center gradient-text mb-8">🏆 Certifications</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-red-100 dark:bg-red-900 rounded-full flex items-center justify-center text-2xl">🎯</div>
+                        <h4 class="font-semibold mb-2">Hack The Box</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Bug Hunter (2025)</p>
+                    </div>
+                    <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center text-2xl">📊</div>
+                        <h4 class="font-semibold mb-2">ClickHouse</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Developer (2024)</p>
+                    </div>
+                    <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center text-2xl">☁️</div>
+                        <h4 class="font-semibold mb-2">AWS</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Cloud Practitioner (2024)</p>
+                    </div>
+                    <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center text-2xl">🇬🇧</div>
+                        <h4 class="font-semibold mb-2">Cambridge</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">C1 English (2021)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text mb-4">Get In Touch</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">Let's work together on something amazing!</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">Contact Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Email</p>
+                                    <a href="mailto:marcelomarcenari@gmail.com" class="text-gray-900 dark:text-white font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">marcelomarcenari@gmail.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-secondary-100 dark:bg-secondary-900 rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-secondary-600 dark:text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Location</p>
+                                    <p class="text-gray-900 dark:text-white font-medium">Barcelona, Spain</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Links -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Find me online</h3>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/Marcelo8D" target="_blank" class="w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors group">
+                                <svg class="w-6 h-6 text-gray-600 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                            </a>
+                            <a href="https://linkedin.com/in/marcelo-salla-marcenari" target="_blank" class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors group">
+                                <svg class="w-6 h-6 text-blue-600 dark:text-blue-400 group-hover:text-blue-900 dark:group-hover:text-blue-300" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8">
+                    <h3 class="text-xl font-semibold mb-6 text-gray-900 dark:text-white">Send me a message</h3>
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors">
+                        </div>
+                        
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subject</label>
+                            <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors">
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
+                            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors resize-none"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-gradient-to-r from-primary-600 to-primary-700 text-white py-3 px-6 rounded-lg font-semibold hover:from-primary-700 hover:to-primary-800 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-center md:text-left mb-4 md:mb-0">
+                    <p class="text-gray-600 dark:text-gray-400">&copy; 2025 Marcelo Salla Marcenari. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://github.com/Marcelo8D" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                        GitHub
+                    </a>
+                    <a href="https://linkedin.com/in/marcelo-salla-marcenari" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                        LinkedIn
+                    </a>
+                    <a href="mailto:marcelomarcenari@gmail.com" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                        Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        if (currentTheme === 'dark') {
+            html.classList.add('dark');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            
+            // Save theme preference
+            const theme = html.classList.contains('dark') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
+        });
+        
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        // Add active class to navigation based on scroll position
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('text-primary-600', 'dark:text-primary-400');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('text-primary-600', 'dark:text-primary-400');
+                }
+            });
+        });
+        
+        // Animate skill bars when they come into view
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const skillBarsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-bar');
+                    skillBars.forEach(bar => {
+                        const width = bar.getAttribute('data-width');
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 300);
+                    });
+                }
+            });
+        }, observerOptions);
+        
+        // Observe skills section
+        const skillsSection = document.getElementById('skills');
+        if (skillsSection) {
+            skillBarsObserver.observe(skillsSection);
+        }
+        
+        // Contact Form Handling
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            // Create mailto link 
+            const mailtoLink = `mailto:marcelomarcenari@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+            
+            // Open default email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            const button = this.querySelector('button[type="submit"]');
+            const originalText = button.textContent;
+            button.textContent = 'Message Sent!';
+            button.classList.add('bg-green-600');
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.classList.remove('bg-green-600');
+                this.reset();
+            }, 3000);
+        });
+        
+        // Add loading animation on page load
+        window.addEventListener('load', () => {
+            document.body.classList.add('animate-fade-in');
+        });
+    </script>
+</body>
+</html>
